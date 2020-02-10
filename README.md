@@ -7,9 +7,10 @@ A reimplementation of Lample & Charton (2019) Deep Learning for Symbolic Mathema
 
 ## Workflow
 
-1. random_tree.py
-2. (1). generate random_binary_tree when p_1 = 0
-   (2). traversal tree to infix and prefix expression
+1. generate random math expressions in binary tree form
+2. map tree to prefix -> input sequence
+3. map tree to inifx to mathematica to prefix -> output sequence
+4. seq-to-seq
 
 ## TODO
 
