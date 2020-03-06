@@ -1,0 +1,6 @@
+/ -1 15	+ / -1 5 * / -1 15 x
+exp x	+ 1 exp x
+pow + 1 * -1 pow x 2 / -1 2	+ -10 + asin x cos 2
+* 2 * pow x -2 pow + * pi log 2 -1	* -2 * pow x -1 pow + * pi log 2 -1
+1	+ 37 x
+/ -1 4	* / -1 4 x
