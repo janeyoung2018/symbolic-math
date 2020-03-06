@@ -1,20 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ###  p_1 != 0
-
-# ### 1. calculate D(e,n)
-
-
-
-
 from random import choices
 import numpy as np
+import functools
+# calculate D(e, n)
 
-
-
-
-
+@functools.lru_cache(15)
 def unary_binary_subtrees(e, n):
     if e==0:
         return 0
@@ -23,11 +12,7 @@ def unary_binary_subtrees(e, n):
     else:
         return unary_binary_subtrees(e-1, n) + unary_binary_subtrees(e, n-1) + unary_binary_subtrees(e+1, n-1)
 
-
-# ### 2. calculate distribution K(e,n)
-
-
-
+# calculate distribution K(e,n)
 
 def distribution_k_a(e, n):
     population = []
@@ -39,21 +24,13 @@ def distribution_k_a(e, n):
         weights.append(unary_binary_subtrees(e-k+1, n-1)/unary_binary_subtrees(e, n))
     return population, weights
 
-
-# ### 3. leaves and binary operators
-
-
-
+# leaves and binary operators
 
 leaves = ["x", "-5", "-4", "-3", "-2", "-1", "1", "2", "3", "4", "5"]
 binary_operators = ["+", "-", "*", "/"]
 unary_operators = ["exp", "log", "sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh"]
 
-
-# ### 4. generate random binary trees
-
-
-
+# generate random binary trees
 
 class Node_Binary:
     operator = True
@@ -78,10 +55,6 @@ class Leaf:
     operand = True
     def __init__(self, data):
         self.data = data
-
-
-
-
 
 def random_binary_trees(n):
     population, weights = distribution_k_a(1, n)
@@ -145,9 +118,6 @@ def random_binary_trees(n):
             
     return node
 
-
-
-
 def traverse_unary_binary_prefix(root, seq=None, verbose=False):
     if not seq:
         seq = []
@@ -181,7 +151,6 @@ def traverse_unary_binary_prefix(root, seq=None, verbose=False):
     
     return seq
         
-    
 if __name__ == '__main__':
     
     root = random_binary_trees(1)
