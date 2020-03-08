@@ -1,9 +1,11 @@
 from random import choices
 import numpy as np
+import time
 import functools
+
 # calculate D(e, n)
 
-@functools.lru_cache(15)
+@functools.lru_cache(128)
 def unary_binary_subtrees(e, n):
     if e==0:
         return 0
@@ -19,16 +21,18 @@ def distribution_k_a(e, n):
     weights = []
     for k in range(e):
         population.append( (k, 1))
-        weights.append(unary_binary_subtrees(e-k, n-1)/unary_binary_subtrees(e, n))
+        e_n = unary_binary_subtrees(e, n)
+        weights.append(unary_binary_subtrees(e-k, n-1)/e_n)
         population.append((k, 2))
-        weights.append(unary_binary_subtrees(e-k+1, n-1)/unary_binary_subtrees(e, n))
+        weights.append(unary_binary_subtrees(e-k+1, n-1)/e_n)
     return population, weights
 
 # leaves and binary operators
 
 leaves = ["x", "-5", "-4", "-3", "-2", "-1", "1", "2", "3", "4", "5"]
+p_leaf = [1/6, 1/12, 1/12, 1/12, 1/12, 1/12, 1/12, 1/12, 1/12, 1/12, 1/12]
 binary_operators = ["+", "-", "*", "/"]
-unary_operators = ["exp", "log", "sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh"]
+unary_operators = ["exp", "log", "sqrt", "sin", "cos", "tan", "sinh", "cosh", "tanh", "asin", "acos", "atan", "asinh", "acosh", "atanh"]
 
 # generate random binary trees
 
@@ -77,7 +81,7 @@ def random_binary_trees(n):
         new_empty_node = []
         for ele in empty_node:
             if i < k:
-                leave = choices(leaves)[0]
+                leave = choices(leaves, p_leaf)[0]
                 value = Leaf(leave)
                 setattr(ele[0], ele[1], value)
             elif i == k:
@@ -112,7 +116,7 @@ def random_binary_trees(n):
         n = n - 1
     if len(empty_node) != 0:
         for ele in empty_node:
-            leave = choices(leaves)[0]
+            leave = choices(leaves, p_leaf)[0]
             value = Leaf(leave)
             setattr(ele[0], ele[1], value)
             
