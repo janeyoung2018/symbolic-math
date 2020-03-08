@@ -57,13 +57,14 @@ def infix_to_prefix(expr, seq=None):
     else:
         seq.append(s1)
             
-    i = 0
-    while i < length:
+
+    for i in range(length):
         if i!=0 and i!=(length-1):
             seq.append(op)
         arg = expr.args[i]
-        infix_to_prefix(arg, seq)
-        i += 1
+        feedback = infix_to_prefix(arg, seq)
+        if feedback==False:
+            return False
     return seq   
         
 ### PREFIX ===> INFIX ###
