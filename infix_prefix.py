@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
-from __future__ import division
+# from __future__ import division
 import random
 
 from sympy import *
+
+#from random_trees import unary_operators as UNARY_OPERATORS
 
 '''
 Fix a priority level for each operator. For example, from high to low:
@@ -13,28 +15,22 @@ Fix a priority level for each operator. For example, from high to low:
 '''
 
 OPERATORS = set(['+', '-', '*', '/', '(', ')', 'pow'])
-UNARY_OPERATORS = set(["exp", "log", "sqrt", "sin", 
-                 "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh"])
-PRIORITY = {'+':1, '-':1, '*':2, '/':2, 'pow':2, "exp":3, "log":3, "sqrt":3, "sin":3, 
-                 "cos":3, "tan":3, "asin":3, "acos":3, "atan":3, "sinh":3, "cosh":3, "tanh":3, "asinh":3, "acosh":3, "atanh":3}
+UNARY_OPERATORS = set(["exp", "log", "sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh"])
+PRIORITY = {'+':1, '-':1, '*':2, '/':2, 'pow':2, "exp":3, "log":3, "sqrt":3, "sin":3, "cos":3, "tan":3, "asin":3, "acos":3, "atan":3, "sinh":3, "cosh":3, "tanh":3, "asinh":3, "acosh":3, "atanh":3}
 
-operator_class = ["<class 'sympy.core.add.Add'>", "<class 'sympy.core.mul.Mul'>", "<class 'sympy.core.power.Pow'>", "exp", "log",
-                 "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh", "Abs"]
+operator_class = ["<class 'sympy.core.add.Add'>", "<class 'sympy.core.mul.Mul'>", "<class 'sympy.core.power.Pow'>", "exp", "log", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh", "Abs"]
 
-operator_dict = {"<class 'sympy.core.add.Add'>": "+", "<class 'sympy.core.mul.Mul'>": "*", "<class 'sympy.core.power.Pow'>": "pow",
-                 "exp": "exp", "log": "log", "sin": "sin", "cos": "cos", "tan": "tan", "asin": "asin", "acos": "acos", 
-                 "atan": "atan", "sinh": "sinh", "cosh": "cosh", "tanh": "tanh", "asinh": "asinh", "acosh": "acosh", "atanh": "atanh", "Abs": "abs"}
+operator_dict = {"<class 'sympy.core.add.Add'>": "+", "<class 'sympy.core.mul.Mul'>": "*", "<class 'sympy.core.power.Pow'>": "pow", "exp": "exp", "log": "log", "sin": "sin", "cos": "cos", "tan": "tan", "asin": "asin", "acos": "acos", "atan": "atan", "sinh": "sinh", "cosh": "cosh", "tanh": "tanh", "asinh": "asinh", "acosh": "acosh", "atanh": "atanh", "Abs": "abs"}
+
 rational_number = ["<class 'sympy.core.numbers.Rational'>", "<class 'sympy.core.numbers.Half'>"]
+
 exp1_number = ["<class 'sympy.core.numbers.Exp1'>"]
-invalid_function = ["<class 'sympy.core.numbers.ImaginaryUnit'>", "<class 'sympy.core.numbers.ComplexInfinity'>", 
-                    "<class 'sympy.core.numbers.NegativeInfinity'>", "<class 'sympy.core.numbers.Infinity'>",
-                   "<class 'sympy.core.numbers.NaN'>"]
+
+invalid_function = ["<class 'sympy.core.numbers.ImaginaryUnit'>", "<class 'sympy.core.numbers.ComplexInfinity'>", "<class 'sympy.core.numbers.NegativeInfinity'>", "<class 'sympy.core.numbers.Infinity'>", "<class 'sympy.core.numbers.NaN'>"]
+
 invalid_expression = ["zoo", "oo", "I", "-oo"]
 
-
-
-### INFIX ===> PREFIX ###
-x = symbols('x')
+#x = symbols('x')
 def infix_to_prefix(expr, seq=None):
     if not seq:
         seq = []
@@ -56,7 +52,6 @@ def infix_to_prefix(expr, seq=None):
         seq.append("1")
     else:
         seq.append(s1)
-            
 
     for i in range(length):
         if i!=0 and i!=(length-1):
@@ -65,8 +60,8 @@ def infix_to_prefix(expr, seq=None):
         feedback = infix_to_prefix(arg, seq)
         if feedback==False:
             return False
-    return seq   
-        
+    return seq
+
 ### PREFIX ===> INFIX ###
 '''
 Scan the formula reversely
@@ -97,9 +92,6 @@ def prefix_to_infix(formula):
     return stack[-1].split()
 
 
-
-
-
 if __name__ == '__main__':
-    infix_to_prefix(simplify(sympify("log(exp(x))")))
-    prefix_to_infix(['cosh', '-', '4', 'sinh', '/', '-4', '-2'])
+    pre = infix_to_prefix(simplify(sympify("log(exp(x))")))
+    inf = prefix_to_infix(['cosh', '-', '4', 'sinh', '/', '-4', '-2'])

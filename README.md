@@ -5,17 +5,20 @@ A reimplementation of Lample & Charton (2019) Deep Learning for Symbolic Mathema
 - [pdf](https://arxiv.org/pdf/1912.01412)
 - [Open Review](https://openreview.net/forum?id=S1eZYeHFDS)
 
+## Codebase guide
+
+1. generate random math expressions in binary tree form (`random_trees.py`)
+2. map tree to prefix (`random_trees.py`)
+3. prefix to infix (`infix_prefix.py`)
+4. infix to prefix (`infix_prefix.py`)
+
 ## Workflow
 
-1. generate random math expressions in binary tree form
-2. map tree to prefix -> input sequence
-3. map tree to inifx to mathematica to prefix -> output sequence
-4. seq-to-seq
+1. `backward_generation.ipynb` - generate trees, generate target using `sympy`, simplify, make sequence (input & target)
+2. `seq2seq_model.ipynb` trains model
 
 ## TODO
 
 - test suite for the binary tree generation
-- generate a dataset of random equations
-- solve equations in mathematica to generate the target
-- aws 
-- train seq-to-seq
+- dataset generation stability / parallelization
+- aws ?
