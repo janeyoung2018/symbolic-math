@@ -7,16 +7,16 @@ from sympy import *
 
 #from random_trees import unary_operators as UNARY_OPERATORS
 
-'''
-Fix a priority level for each operator. For example, from high to low:
-    3.    - (unary negation)
-    2.    * /
-    1.    + - (subtraction)
-'''
+# '''
+# Fix a priority level for each operator. For example, from high to low:
+#     3.    - (unary negation)
+#     2.    * /
+#     1.    + - (subtraction)
+# '''
 
 OPERATORS = set(['+', '-', '*', '/', '(', ')', 'pow'])
 UNARY_OPERATORS = set(["exp", "log", "sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh"])
-PRIORITY = {'+':1, '-':1, '*':2, '/':2, 'pow':2, "exp":3, "log":3, "sqrt":3, "sin":3, "cos":3, "tan":3, "asin":3, "acos":3, "atan":3, "sinh":3, "cosh":3, "tanh":3, "asinh":3, "acosh":3, "atanh":3}
+# PRIORITY = {'+':1, '-':1, '*':2, '/':2, 'pow':2, "exp":3, "log":3, "sqrt":3, "sin":3, "cos":3, "tan":3, "asin":3, "acos":3, "atan":3, "sinh":3, "cosh":3, "tanh":3, "asinh":3, "acosh":3, "atanh":3}
 
 operator_class = ["<class 'sympy.core.add.Add'>", "<class 'sympy.core.mul.Mul'>", "<class 'sympy.core.power.Pow'>", "exp", "log", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh", "Abs"]
 
@@ -70,7 +70,6 @@ Scan the formula reversely
 '''
 def prefix_to_infix(formula):
     stack = []
-    prev_op = None
     for ch in reversed(formula):
         if ch not in OPERATORS and ch not in UNARY_OPERATORS:
             stack.append(ch)
@@ -78,17 +77,11 @@ def prefix_to_infix(formula):
             if ch in OPERATORS:
                 a = stack.pop()
                 b = stack.pop()
-                if prev_op and PRIORITY[prev_op] < PRIORITY[ch]:
-                    exp = '(' + " " + a + " " + ')' + " " + ch + " "+ b
-                else:
-                    exp = a + " " + ch + " " + b
+                exp = "(" + " " + a + " " + ch + " " + b + " " + ")"  
             else:
                 a = stack.pop()
                 exp = ch + " " + "(" + " " +  a + " " +")"
             stack.append(exp)
-            prev_op = ch
-    #print(stack[-1])
-    #print(stack[-1].split())
     return stack[-1].split()
 
 
