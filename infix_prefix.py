@@ -1,22 +1,12 @@
-#!/usr/bin/env python
-
-# from __future__ import division
 import random
 
 from sympy import *
 
-#from random_trees import unary_operators as UNARY_OPERATORS
 
-# '''
-# Fix a priority level for each operator. For example, from high to low:
-#     3.    - (unary negation)
-#     2.    * /
-#     1.    + - (subtraction)
-# '''
 
 OPERATORS = set(['+', '-', '*', '/', '(', ')', 'pow'])
+
 UNARY_OPERATORS = set(["exp", "log", "sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh"])
-# PRIORITY = {'+':1, '-':1, '*':2, '/':2, 'pow':2, "exp":3, "log":3, "sqrt":3, "sin":3, "cos":3, "tan":3, "asin":3, "acos":3, "atan":3, "sinh":3, "cosh":3, "tanh":3, "asinh":3, "acosh":3, "atanh":3}
 
 operator_class = ["<class 'sympy.core.add.Add'>", "<class 'sympy.core.mul.Mul'>", "<class 'sympy.core.power.Pow'>", "exp", "log", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "asinh", "acosh", "atanh", "Abs"]
 
