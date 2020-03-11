@@ -1,7 +1,7 @@
 import random
 import time
 
-from sympy import Symbol, diff
+from sympy import Symbol, diff, simplify
 
 from infix_prefix import prefix_to_infix, infix_to_prefix
 from random_trees import random_binary_trees, traverse_unary_binary_prefix
@@ -122,6 +122,8 @@ def generate_bwd(num):
             if seq is not None:
                 expression_prefix, result_simp_prefix = seq
                 sequence.append(expression_prefix + "\t" + result_simp_prefix + "\n")
+            else:
+                continue
             i += 1
 
         end = time.time()
