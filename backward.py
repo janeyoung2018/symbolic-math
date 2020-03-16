@@ -43,7 +43,7 @@ def parse_expr_timeout(string):
     expr = None
     def f(d, string):
         from sympy import S; S.Half #https://github.com/sympy/sympy/issues/18438
-        d['expr'] = parse_expr(string, local_dict={'x': x})
+        d['expr'] = parse_expr(string, local_dict={'x': x}, evaluate=False)
 
     with Manager() as manager:
         d = manager.dict()
