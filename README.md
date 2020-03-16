@@ -1,4 +1,4 @@
-# Symbolic math
+# (Symbolic Math) Reimplementation of [Deep Learning for Symbolic Mathematics](https://arxiv.org/abs/1912.01412)
 
 A reimplementation of Lample & Charton (2019) Deep Learning for Symbolic Mathematics
 - [arxiv](https://arxiv.org/abs/1912.01412)
