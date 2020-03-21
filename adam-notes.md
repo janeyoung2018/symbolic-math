@@ -1,3 +1,5 @@
+1e6 * 1780 / 2000 / 3600 / 24 = 10 days
+
 ## paper review
 
 integration + ODEs (1st & 2nd order)

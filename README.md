@@ -15,6 +15,12 @@ A reimplementation of Lample & Charton (2019) Deep Learning for Symbolic Mathema
 ## Workflow
 
 1. `backward_generation.ipynb` - generate trees, generate target using `sympy`, simplify, make sequence (input & target)
+
+Can also run
+```bash
+$ python generate_dataset.py --cpu 12 --num 10000 --n 8
+```
+
 2. `seq2seq_model.ipynb` trains model
 
 ## TODO
