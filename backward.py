@@ -16,6 +16,7 @@ def simplify_timeout(expr):
 
     result = None
     def f(d, expr):
+        from sympy import S; S.Half
         try:
             d['result'] = simplify(expr)
         except:
@@ -32,6 +33,8 @@ def simplify_timeout(expr):
             result = d["result"]
     if result==None:
         return expr
+    elif str(type(result))=="<class 'sympy.calculus.util.AccumulationBounds'>":
+        return "Error"
     else:
         return result
 
@@ -42,8 +45,11 @@ def parse_expr_timeout(string):
 
     expr = None
     def f(d, string):
-        from sympy import S; S.Half #https://github.com/sympy/sympy/issues/18438
-        d['expr'] = parse_expr(string, local_dict={'x': x}, evaluate=False)
+        from sympy import S; S.Half
+        try:
+            d['expr'] = parse_expr(string, local_dict={'x': x}, evaluate=False)
+        except:
+            return None
 
     with Manager() as manager:
         d = manager.dict()
@@ -53,15 +59,9 @@ def parse_expr_timeout(string):
         if p.is_alive():
             p.terminate()
         else:
-            try:
-                expr = d["expr"]
-            except KeyError:
-                return None
+            expr = d["expr"]
 
-    if expr==None or str(type(expr))=="<class 'sympy.calculus.util.AccumulationBounds'>":
-        return None
-    else:
-        return expr
+    return expr
 
 
 def generate_single_sequence():
@@ -83,7 +83,7 @@ def generate_single_sequence():
     result_simp = simplify_timeout(result_expr)
     if result_simp == "Error":
         return None
-
+        
     #  back to prefix
     result_simp_prefix = infix_to_prefix(result_simp)
     if not result_simp_prefix:
@@ -94,11 +94,10 @@ def generate_single_sequence():
         expr_diff = diff(result_simp)
     except ValueError:
         return None
-
     expression = simplify_timeout(expr_diff)
     if expression == "Error":
         return None
-
+        
     expression_prefix = infix_to_prefix(expression)
     if not expression_prefix:
         return None
@@ -109,7 +108,6 @@ def generate_single_sequence():
 
 
 def generate_bwd(num):
-
     while True:
         if _FINISH:
             break
