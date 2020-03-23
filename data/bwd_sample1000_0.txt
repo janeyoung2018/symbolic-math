@@ -1,5 +1,0 @@
-0	cosh * 4 pow tan 1 -1
-+ 1 * 12 pow x -2	+ 1 + x * -12 pow x -1
-* 4 pow + 1 * -16 pow x 2 / -1 2	asin * 4 x
-+ * / -1 4 pow sin + -2 + x atan acosh -2 -1 * / 1 4 * pow sin + -2 + x atan acosh -2 -2 * + 2 x cos + -2 + x atan acosh -2	+ / -9 4 * / -1 4 * pow sin + -2 + x atan acosh -2 -1 + 2 x
-* -2 * pow x -3 + 5 cosh 3	* pow x -2 + 5 cosh 3
