@@ -21,10 +21,8 @@ Can also run
 $ python generate_dataset.py --cpu 12 --num 10000 --n 8
 ```
 
-2. `seq2seq_model.ipynb` trains model
+2. `seq2seq_model.ipynb` basic model
 
-## TODO
+3. `transformer.ipynb` trains model
 
-- test suite for the binary tree generation
-- dataset generation stability / parallelization
-- aws ?
+
