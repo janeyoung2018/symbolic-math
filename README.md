@@ -23,6 +23,6 @@ $ python generate_dataset.py --cpu 12 --num 10000 --n 8
 
 2. `seq2seq_model.ipynb` basic model
 
-3. `transformer.ipynb` trains model
+3. `transformer.ipynb` trains model in google cloud.
 
 
