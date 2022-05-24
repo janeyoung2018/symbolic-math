@@ -1,5 +1,5 @@
 sympy
-tensorflow==2.1.0
+tensorflow==2.6.4
 tensorflow-addons==0.8.2
 sklearn
 pydot
